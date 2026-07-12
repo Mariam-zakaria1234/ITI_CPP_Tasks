@@ -1,0 +1,36 @@
+#include "project1_linux.h"
+#include <iostream>
+using namespace std;
+int main() {
+	int choice ;
+	int Deposit;
+	int Withdraw;
+	int Balance = 1000;
+	do {
+		cout << "Select an option:\n 1:Balance \n 2:check Balance \n 3:Deposit\n 4:Withdraw \n 5:Exit ";
+		cin >> choice;
+		
+		switch (choice) {
+		case 1:cout << Balance; break;
+		case 2:cout <<"The Balance is: " << Balance;break;
+		case 3: {
+			cin >> Deposit;
+			Balance = Deposit + Balance;
+			break; }
+		case 4: {
+			cin >> Withdraw;
+			if (Withdraw <= Balance&& Withdraw >  0 ) {
+				cout << "Sucessful operation ";
+				Balance = Balance - Withdraw;
+			}
+			else {
+				cout << "Transaction failed Insufficient funds ";
+				break;
+			}
+			 }
+		case 5:cout << "The operation is completed ";break;
+		default:cout << "Invalid value , please try again .\n ";break;
+		}
+	}
+	while (choice != 5);
+}
