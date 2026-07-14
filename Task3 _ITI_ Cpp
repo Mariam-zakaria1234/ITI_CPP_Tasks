@@ -1,0 +1,106 @@
+#include <iostream>
+#include <string>
+#include <cctype> 
+#include <iomanip>
+std:: string getName(){
+std::string name;
+while (true){
+std::cout <<"enter employee name \n";
+std:: cin.clear();
+std::getline(std::cin,name);
+if (!name.empty())
+return name;
+std::cout <<"name cannot be empty \n";
+}
+}
+float getHours(){
+float hours;
+while (true){
+std::cout<<"enter the number of hours worked\n";
+std::cin>>hours ;
+if (hours>=0)
+return hours;
+std::cout<<"invalid input :  please enter a positive number\n";
+std:: cin.clear();
+std::cin.ignore(1000,'\n');
+}
+}
+float getOvertimeHours() {
+float overtime ;
+while (true){
+std::cout<<"enter the overtime hours\n";
+std::cin>>overtime ;
+if (overtime>=0)
+return overtime ;
+std::cout<<"invalid input :  please enter a positive number\n";
+std:: cin.clear();
+std::cin.ignore(1000,'\n');
+}
+}
+int getId(){
+int id;
+while(true){
+std::cout<<"enter employee ID \n";
+std::cin>>id ;
+if (id>0)
+return id;
+std::cout<<"invalid ID :  please enter a positive number\n";
+std:: cin.clear();
+std::cin.ignore(1000,'\n');
+}
+}
+char getPosition (){
+char position;
+while(true){
+std::cout<<" employee  or manager? enter (e/m) \n";
+std::cin>>position ;
+position =std::tolower(position);
+if (position=='m'||position=='e')
+return position;
+std::cout<<"invalid input :  please enter (e) for employee or (m) for manager \n";
+}
+}
+float calculatsalary(float hours, float reat){
+return hours*reat;
+}
+float calculatOvertimeSalary(float overtimeHours, float overtimReat){
+return overtimeHours*overtimReat;
+}
+float calculatTax(float salary, float overtimepay, float tax=.15){
+ return (salary+overtimepay)-tax;
+}
+float calculatbonus(float salary, float overtimepay, float bonusReat){
+return (salary+overtimepay)*bonusReat;
+}
+float calculatTotalSalary(float salary, float overtimepay, float bonusPay, float tax){
+return salary+overtimepay+bonusPay-tax;
+}
+void Display (std:: string name , float salary , float overtime,
+float bonus ,float tax , float id , float totalsalary){
+std::cout << "...............\n" ;
+std::cout <<"employee name: "<<name<<"\n";
+std::cout <<" employee ID: "<<id<<"\n";
+std::cout <<"base salary: "<<salary<<"\n";
+std::cout <<"overtime pay: "<<overtime<<"\n";
+std::cout <<"bonus: "<<bonus<<"\n";
+std::cout <<"tax: "<<tax<<"\n";
+std::cout <<"total salary: "<<totalsalary<<"\n";
+}
+int main(){
+std:: string name =getName();
+float hours =getHours();
+float overtimeHours =getOvertimeHours();
+int id=getId();
+char position =getPosition();
+float bonusReat;
+if (position=='m')
+bonusReat =.15;
+else 
+bonusReat =.10;
+float salary =calculatsalary(hours,50.0);
+float overtimepay =calculatOvertimeSalary(overtimeHours,75.0);
+float tax=calculatTax(salary,overtimepay);
+float bonusPay=calculatbonus(salary,overtimepay,bonusReat);
+float totalsalary=calculatTotalSalary(salary,overtimepay,bonusPay,tax);
+Display(name,salary,overtimepay,bonusPay,tax,id,totalsalary);
+}
