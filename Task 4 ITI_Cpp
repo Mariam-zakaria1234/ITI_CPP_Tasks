@@ -1,0 +1,33 @@
+#include <iostream>
+    void increment (int *num){
+    std::cout << "the number after the increase: " <<(*num)+1 <<"\n";
+    }
+    void decrement (int *num){
+    std::cout << "the number after the decrease:" <<(*num)-1 <<"\n";
+    }
+    void Reset(int *num){
+    *num=0 ;
+    std::cout << "reset to 0: " <<*num<<"\n";
+    }
+    void showNum (int *num){
+    std::cout << "the number after the increase: " <<(*num) <<"\n";
+    } 
+    int main (){
+    int num ;
+    std::cout << "enter a number\n" ;
+    std:: cin>>num;
+    int *ptr=&num;
+    int choice ;
+    do {
+    std:: cout<<"...................\n";
+    std:: cout<<" select between menu:\n 1-increment\n 2-decrement \n 3-Reset\n 4-show Number\n 5-Exit\n ";
+    std:: cin >>choice ;
+    switch(choice){
+    case 1:increment(&num);break;
+    case 2:decrement(&num);break;
+    case 3:Reset(&num); break;
+    case 4:showNum(&num);break;
+    case 5:std:: cout<<"thank you";break;
+    default:std::cout << "invalid input!: please try again\n" ;break;
+    } }while(choice!=5);
+    }
