@@ -1,0 +1,47 @@
+#include<string>
+    #include <iostream>
+    void inputMarks(int *math,int *physics,int *english){
+     std:: cout <<" enter math marke: ";
+    std::cin >>*math;    
+    std:: cout <<" enter physics marke: ";
+    std::cin >>*physics;
+    std:: cout <<" enter english marke: ";
+    std::cin >>*english;
+    }
+    double calculatAverage (int *math,int *physics,int *english){
+    return ( (*math+*physics+*english)/3);
+    }
+    char calculatGrade(double average){
+    if (average>=90)
+    return'A';
+    else if (average>=80)
+    return'B';
+    else if (average>=70)
+    return'C';
+    else if (average>=60)
+    return'D';
+    else 
+    return'f';
+    }
+    void printD(std::string name,int *math,int *physics,int *english, double average,char grade ){
+    std::cin.ignore(1000,'\n');
+    std:: cout <<" enter your name \n";
+    std::getline(std::cin, name);
+    std:: cout <<" ..........,......\n ";
+    std:: cout <<"  student:  "<<name;
+    std:: cout <<"\n  math:  "<<*math;
+    std:: cout <<"\nphysics:  "<<*physics;
+    std:: cout <<"\nenglish:  "<<*english;
+    std:: cout <<"\naverage:  "<<average;
+    std:: cout <<"\ngrade:    "<<grade;
+    }
+    int main (){
+    std:: string name ;
+    int math ,physics,english;
+    inputMarks (&math ,&physics,&english);
+    double average=calculatAverage(&math ,&physics,&english);
+    char grade =calculatGrade(average);
+    printD(name ,&math ,&physics,&english,average,grade);
+    
+
+    }
