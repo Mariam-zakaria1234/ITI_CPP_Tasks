@@ -1,0 +1,50 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <string>
+#include <numeric>
+using namespace std;
+class student{
+private:
+string name ;
+int id;
+int seat_numder;
+public:
+string getName(){
+return name ;
+}
+int getId(){
+return id;
+}
+int getSeat_number(){
+return seat_numder;
+}
+void settName(string nameValue){
+name=nameValue ;
+}
+void sett_setnumer(int number){
+seat_numder=number;
+}
+void settId(int id1){
+id=id1;
+}
+void print (int id1,int seat, string n){
+cout << ".     *********************** " << endl;
+cout << "the student name:" <<n<< endl;
+cout << "the id student:" <<id1<< endl;
+cout << "the seat number:" << seat<<endl;
+}
+};
+int main (){
+student p1;
+string n="mariam";
+int i=1234;
+int seat =2026;
+  p1.settName(n);
+  p1.settId(i);
+  p1.sett_setnumer(seat);
+p1.getName();
+p1.getId();
+p1 .getSeat_number();
+p1.print(i,seat,n);
+}
