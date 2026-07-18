@@ -1,0 +1,57 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <string>
+#include <numeric>
+using namespace std;
+void at_access( const vector<int>&v,int index){
+if (index<v.size())
+cout << v.at(index) << endl;
+else
+cout << "the index is out of size " << endl;
+}
+void front_elemant(const vector<int>&v){
+cout << "the front element of vector:"<<v.front() << endl;
+}
+void back_elemant(const vector<int>&v){
+cout << "the back element of vector "<<v.back()<<endl;
+}
+void sum_e(const vector< int>&v){
+cout << "the sum element of vector "<<accumulate (v.crbegin(),v.crend(),0)<<endl;
+}
+void erase_negative( vector< int>&v){
+for(int i=0;i<v.size();i++){
+if (v[i]<0){
+v.erase(v.begin()+i);
+i--;
+}
+else
+cout << " " <<v[i];
+}}
+void resizeE(vector< int>&v){
+v.resize(v.size()+5,3);
+for(int num:v)
+cout << " " <<num;
+}
+void insertE( vector< int>&v){
+v.insert(v.begin(),5);
+for(int num:v)
+cout <<" "<<num;
+}
+int main() {
+vector<int> vect={1,-3,7,9};
+int n=vect.size();
+int index ;
+cout << "enter the index number of vector " << endl;
+cin >> index;
+at_access(vect, index);
+front_elemant(vect);
+back_elemant(vect);
+sum_e(vect);
+cout << "the positive elemant of vector " << endl;
+erase_negative(vect);
+cout << "\nthe vector after resize " << endl;
+resizeE(vect);
+cout << "\nthe vector after insert " << endl;
+insertE(vect);
+}
