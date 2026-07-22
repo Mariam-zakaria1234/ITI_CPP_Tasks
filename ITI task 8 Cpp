@@ -1,0 +1,136 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <string>
+#include <numeric>
+#include <sstream>
+using namespace std;
+class complex{
+private:
+float real ;
+float img;
+public:
+complex (){
+real =0.0;
+img =0.0;
+}
+complex (float r,float im){
+real =r;
+img=im;
+}
+complex(const complex &obj){
+real=obj.real;
+img=obj.img;
+}
+~complex(){
+cout << "this is a destractor" << endl;
+}
+float getReal (){
+return real;
+}
+float getImg(){
+return img;
+}
+void setReal(float r){
+real=r;
+}
+void setImg(float im){
+img=im;
+}
+ complex operator +(const complex& other){
+ return complex (other.real +this->real,other.img +this->img);
+ }
+ complex operator -(const complex& other){
+ return complex (other.real -this->real,other.img-this->img);
+ }
+ complex operator *(const complex& other){
+ return complex (other.real *this->real,other.img*this->img);
+ }
+ complex operator /(const complex& other){
+ return complex (other.real /this->real,other.img/this->img);
+ }
+ complex operator +=(const complex& other){
+ real +=other.real;
+ img+=other.img;
+ return *this;
+ } 
+ complex operator -=(const complex& other){
+ real -=other.real;
+ img-=other.img;
+ return *this;
+ }
+ complex &operator ++(){
+ ++real ;
+ ++img;
+ return *this;
+ }
+ complex &operator --(){
+ --real ;
+ --img;
+ return *this;
+ }
+  bool operator ==(const complex& other){
+ return (real==other.real)&&(img==other.img);
+ }
+ bool operator !=(const complex& other){
+ return (real!=other.real)&&(img!=other.img);
+ }
+ bool operator> (const complex& other){
+ return (real*real+img*img)>(other.img*other.img+other.real*other.real);
+ }
+ bool operator< (const complex& other){
+ return (real*real+img*img)<(other.img*other.img+other.real*other.real);
+ }
+ complex add(const complex& other){
+ return complex(other.real+this->real,other.img+this->img);
+ }
+ complex subt(const complex& other){
+ return complex(other.real-this->real,other.img-this->img);
+ }
+ complex multiple (const complex& other){
+ return complex(other.real*this->real,other.img*this->img);
+ }
+ complex division (const complex& other){
+ return complex(other.real/this->real,other.img/this->img);
+ }
+ operator double()const {
+ return real;
+ }
+ void print (){
+ cout << real <<" + " <<img<<" i"<< endl;
+ }
+ 
+};
+int main (){
+complex c1(2.5,5.0);
+complex c2(1.5,4.0);
+complex c3=c2+c1;
+c3.print();
+complex c4=c2-c1;
+c4.print();
+++c1;
+++c2;
+complex c5=c2*c1;
+c5.print();
+--c1;
+complex c6=c2/c1;
+c6.print();
+--c2;
+double x=c1;
+c1.getReal;
+c1.getImg;
+c2.setReal(3.0);
+complex result1 =c1.add(c2);
+ result1.print();
+complex result2 =c1.subt(c2);
+result2.print();
+complex result3 =c1.multiple(c2);
+result3.print();
+complex result4 =c1.division(c2);
+result4.print();
+if (c1==c2)
+cout << "c1 and c2 are equal " << endl;
+if (c1>c2)
+cout << "c1 is greater than c2" << endl;
+
+}
