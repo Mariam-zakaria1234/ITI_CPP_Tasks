@@ -1,0 +1,102 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <string>
+#include <numeric>
+#include <sstream>
+using namespace std;
+class geometric {
+protected: 
+float base;
+float dinm2;
+public:
+geometric (float b,float d2){
+base=b;
+dinm2=d2;
+}
+float getdin1(){
+return base;
+}
+float getdin2(){
+return dinm2;
+}
+void setdin1(float b){
+base =b;
+}
+void setdin2(float d2){
+dinm2=d2;
+}
+~geometric(){
+cout << "destroy to parent" << endl;
+}
+};
+class triangle: public geometric {
+private: 
+float h;
+public:
+triangle (float h,float base):geometric(base,0){
+
+this-> h=h;
+this-> base=base;
+}
+float getarea(){
+return(.5* base*h);
+}
+void print (){
+cout << "the base of triangle "<<base<<" and the height "<<h << endl;
+}
+~triangle(){
+cout << "destroy to triangle" << endl;
+}
+};
+class square : public geometric {
+public:
+square (float dinm2):geometric(dinm2, dinm2) {
+cout << "dinamic of square" << endl;
+this->dinm2=dinm2;
+}
+float getarea(){
+return(dinm2*dinm2);
+}
+void print (){
+cout << "the side length of squer "<<dinm2 << endl;
+}
+~square(){
+cout << "destroy to square" << endl;
+}
+};
+ class rectangle : public geometric {
+public:
+rectangle(float base, float dinm2):geometric(base,dinm2){
+this ->base=base;
+this ->dinm2=dinm2;
+}
+float getarea (){
+return base*dinm2 ;
+}
+void print (){
+cout << "the width of rectangle "<<base<<" and the length "<< dinm2<< endl;
+}
+~rectangle(){
+cout << "destroy to rectangle" << endl;
+}
+};
+int main (){
+triangle t(6.0 ,4.0);
+t.print ();
+cout << "the area of triangle" <<t.getarea()<< endl;
+cout << ".  **************** " << endl;
+square s(6.0 );
+s.print ();
+cout << "the area of square" <<s.getarea()<< endl;
+cout << ".  **************** " << endl;
+rectangle r(3.0,6.0);
+r.print ();
+cout << "the area of rectangle" <<r.getarea()<< endl;
+geometric*ptr=&r;
+//ptr->getarea;
+ptr->getdin1();
+ptr->getdin2();
+
+}
+    
