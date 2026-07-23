@@ -1,0 +1,76 @@
+#include <iostream>
+#include<algorithm>
+#include <cmath>
+#include<vector>
+using namespace std;
+void reverse_in_place(int start,int end,vector<int>& v) {
+	while (start <= end) {
+		swap(v[start], v[end]);
+		start++;
+		end--;
+	}
+	for (int num : v) {
+		cout << num << " ";
+	}
+}
+int freque(const vector<int>& v,int n) {
+	int count = 0;
+    int j;
+	for (int i = 0;i < n;i++) {
+		for ( j = 1 + i;j < n;j++) {
+			if (v[j] == v[i])
+				break;
+		}
+		if (j == n)
+			count++;
+
+	}
+	return count;
+}
+void sc_larg(const vector<int>& v1) {
+	int max = 0, sc_max = 0;
+	if (v1[0] > v1[1]) {
+		max = v1[0];
+		sc_max = v1[1];
+	}
+	else {
+		max = v1[1];
+		sc_max = v1[0];
+	}
+	for (int num : v1) {
+		if (num > max) {
+			sc_max = max;
+			max = num;
+		}
+		else if (num<max && num>sc_max) {
+			sc_max = num;
+		}
+	}
+	cout << "tha scond larges element " << sc_max;
+}
+void remove(vector<int>& v,int n) {
+	for (int i = 0;i < n;i++) {
+		for (int j = 1 + i;j < n;j++) {
+			if (v[j] == v[i])
+				v.erase(v.begin() + j);
+			j--;
+		}
+	}
+	for (int num : v)
+		cout << " after remove duplicates in vector: " << num << " ";
+
+}
+int main() {
+	vector <int>v1 = { 1,2,3,4,5,6,7 };
+	int start = 0, end = v1.size();
+	reverse_in_place(start, end, v1);
+	vector <int>v2 = { 1,2,3,3,4,4,2,5,6 };
+	int n = v2.size();
+	int count = freque(v2, n);
+	cout << "\n the count of num occument: " << count;
+	cout << "\n";
+	sc_larg(v1);
+	remove(v2, n);
+
+	return 0;
+}
