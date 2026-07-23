@@ -1,0 +1,108 @@
+#include <iostream>
+#include <string>
+using namespace std;
+class Vehicle {
+protected:
+    string color;
+    int speed;
+    int model;
+    string fuelType;
+    string motionStatus;
+
+public:
+   Vehicle(string col, int spd, int mod, string fuel, string motion) {
+        color = col;
+        speed = spd;
+        model = mod;
+        fuelType = fuel;
+        motionStatus = motion;
+    }
+    ~Vehicle() {
+        cout << "Vehicle destructor called.\n";
+    }
+};
+class Car : public Vehicle {
+private:
+    string brand;
+    int doorsCount;
+
+public:
+    Car(string brand, int doors, string col, int spd, int mod, string fuel, string motion)
+        : Vehicle(col, spd, mod, fuel, motion) {
+        this->brand = brand;
+        this->doorsCount = doors;
+    }
+
+    void printInfo() {
+        cout << "--- Car Information ---\n";
+        cout << "Brand: " << brand << endl;
+        cout << "Doors: " << doorsCount << endl;
+        cout << "Color: " << color << endl;
+        cout << "Speed: " << speed << " km/h\n";
+        cout << "Model: " << model << endl;
+        cout << "Fuel Type: " << fuelType << endl;
+        cout << "Status: " << motionStatus << endl;
+        cout << "-----------------------\n";
+    }
+
+    ~Car() {
+        cout << "Car destructor called for " << brand << endl;
+    }
+};
+class truck : public Vehicle{
+ private:
+    string brand;
+ public :
+   truck(string brand, string col, int spd, int mod, string fuel, string motion): Vehicle (col,spd,mod,fuel, motion){
+   this ->brand=brand ;
+   }
+      void printInfo() {
+        cout << "--- Truck Information ---\n";
+        cout << "Brand: " << brand << endl;
+        cout << "Color: " << color << endl;
+        cout << "Speed: " << speed << " km/h\n";
+        cout << "Model: " << model << endl;
+        cout << "Fuel Type: " << fuelType << endl;
+        cout << "Status: " << motionStatus << endl;
+        cout << "-----------------------\n";
+    }
+    ~truck(){
+      cout << "Truck destructor called for " << brand << endl;
+    }
+};
+class plane: public Vehicle{
+ private: 
+ string boeing ;
+ int maxalitet;
+  public:
+   plane (string boeing ,int maxalitet,string col, int spd, int mod, string fuel, string motion): Vehicle (col,spd,mod,fuel, motion){
+   this ->boeing=boeing ;
+   this ->maxalitet=maxalitet ;
+   }
+     void printInfo() {
+        cout << "--- plane Information ---\n";
+        cout << "Boeing: " << boeing << endl;
+        cout << "Color: " << color << endl;
+        cout << "Speed: " << speed << " km/h\n";
+        cout << "Model: " << model << endl;
+        cout << "Fuel Type: " << fuelType << endl;
+        cout << "Status: " << motionStatus << endl;
+        cout << "Max Altitude: " << maxalitet << endl;
+        cout << "-----------------------\n";
+    }
+       ~plane (){
+        cout << "plane destructor called for " << boeing << endl;
+       
+       }
+};
+
+int main() {
+    
+    Car myCar("BMW", 4, "Black", 220, 2025, "Gasoline","stopped");
+    myCar.printInfo();
+    truck t("Hino","Read",260,2006,"Gasoline","moving");
+    t.printInfo();
+    plane p("EgyptAir ",890 ,"white",550,2010,"solar","stopped ");
+    p. printInfo();
+    return 0;
+}
