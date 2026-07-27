@@ -1,0 +1,135 @@
+#include<iostream>
+#include <vector>
+#include <string>
+using namespace std;
+class borrow {
+public:
+	virtual void borrowBook() = 0;
+	virtual void returnBook() = 0;
+	virtual bool chack_availability() const=0;
+};
+class book:public borrow {
+private:
+	string title;
+	string author;
+	int book_id;
+	bool isAvailable;
+public:
+	book(string title, string author, int book_id) {
+		this->title= title;
+	    this->author= author;
+		this->book_id= book_id;
+	}
+	int getID() {
+		return book_id;
+	}
+	void display_book_info()const {
+		cout << book_id << "  : " << title << " \ by " << author << " - " << (isAvailable ? "Available" : "Borrow") << "\n";
+	 }
+	void borrowBook()override {
+		if (isAvailable) {
+			isAvailable = false;
+			cout << "you have borrowed  " << title << "\n";
+		}
+		else
+			cout << title << " : is currently not available \n";
+	 }
+	void  returnBook()override {
+		if (isAvailable == false) {
+			isAvailable = true;
+			cout << "you have returned  " << title << "\n";
+		}
+		else 
+			cout << title << " : was not borrowed \n";
+	}
+	bool chack_availability()const override {
+		return isAvailable;
+	}
+};
+class library  {
+   private:
+	   vector<book>books;
+
+   public:
+
+	   void add_book(const book& mybook){
+		   books.push_back(mybook); 
+	   }
+	   void display_book()const {
+		   cout << "..... Library Book ...\n";
+		   if ( books.empty()){
+			   cout << " no book in library \n";
+		   }
+		   else {
+			   int n = books.size();
+			   for (int i = 0;i < n;i++) {
+				   books[i].display_book_info();
+			   }
+		   }
+	   }
+	   book*findBook_by_id(int id) {
+		   for (auto& b : books){
+	   
+			   if (b.getID() == id)
+				   return &b;
+		   }
+		   return nullptr; 
+	   }
+	   void printMenu() {
+		   cout << "......Library Menu.....\n";
+		   cout << "1. Add Book\n" << "2. Display Books\n "
+			   << "3. Borrow Book\n"
+			   << "4. Return Book\n "
+			   << "0. Exit\n"
+			   << "Choose an option";
+	   }
+};
+
+int main() {
+	library li;
+	li.add_book(book("c++", "mariam", 102));
+	li.add_book(book("java", "zakaria", 123));
+	int chooice;
+	do {
+		cin >> chooice;
+		switch (chooice) {
+		case 1: { 
+			cout << "enter the deetalise about this book  ... title -author- id";
+			string ti, aut;
+			int id;
+			cin >> ti >> aut >> id;
+			li.add_book(book(ti, aut, id));
+			break;
+		}
+		case 2: {
+			li.display_book();
+			break;
+		}
+		case 3: {
+			int id;
+			cout << "enter id to borrow boook\n";
+			cin >> id;
+			book* found = li.findBook_by_id(id);
+			if (found != nullptr)
+				found->borrowBook();
+			else
+				cout << "not found \n";
+			break;
+		}
+		case 4: {
+			int id;
+			cout << "enter id to return \n";
+			cin >> id;
+			book* found = li.findBook_by_id(id);
+			if (found == nullptr)
+				found->returnBook();
+			else
+				cout << "this book is available\n";
+			break;
+		}
+		case 5:cout << "thank you\n";break;
+		default:cout << "input error\n";break;
+
+		}
+	} while (chooice != 5);
+}
